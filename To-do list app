@@ -1,0 +1,49 @@
+class Todo:
+    def __init__(self):
+        self.tasks = []
+
+    def display_tasks(self):
+        if not self.tasks:
+            print("No tasks.")
+        else:
+            for index, task in enumerate(self.tasks, start=1):
+                print(f"{index}. {task}")
+
+    def add_task(self, task):
+        self.tasks.append(task)
+        print("Task added.")
+
+    def remove_task(self, task_number):
+        if 1 <= task_number <= len(self.tasks):
+            del self.tasks[task_number - 1]
+            print("Task removed.")
+        else:
+            print("Invalid task number.")
+
+    def start(self):
+        while True:
+            print("\n===== To-Do List =====")
+            print("1. Display tasks")
+            print("2. Add a task")
+            print("3. Remove a task")
+            print("4. Exit")
+            choice = input("Enter your choice: ")
+
+            if choice == "1":
+                self.display_tasks()
+            elif choice == "2":
+                task = input("Enter the task: ")
+                self.add_task(task)
+            elif choice == "3":
+                self.display_tasks()
+                task_number = int(input("Enter the task number to remove: "))
+                self.remove_task(task_number)
+            elif choice == "4":
+                print("Goodbye!")
+                break
+            else:
+                print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    todo = Todo()
+    todo.start()
